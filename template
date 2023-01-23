@@ -1,0 +1,33 @@
+# Template file for 'picom-pijulius'
+pkgname=picom-pijulius
+version=1
+revision=5
+wrksrc=picom-next
+build_style=meson
+configure_args="-Dwith_docs=true"
+hostmakedepends="git pkg-config asciidoc"
+makedepends="MesaLib-devel dbus-devel libconfig-devel libev-devel pcre-devel
+ pixman-devel xcb-util-image-devel xcb-util-renderutil-devel
+ libxdg-basedir-devel uthash"
+depends="desktop-file-utils"
+short_desc="Lightweight compositor for X11 (previously a compton fork)"
+maintainer="Frank Steinborn <steinex@nognu.de>"
+license="MIT, MPL-2.0"
+homepage="https://github.com/pijulius/picom/"
+#distfiles="https://github.com/pijulius/picom/archive/next.tar.gz"
+#checksum=dfe072ca800360b6125c59dd5b6f27840f540cf7ee63add7a913b292e26ef292
+
+do_fetch() {
+  git clone --single-branch --depth=1 "https://github.com/pijulius/picom" ${wrksrc}
+}
+
+post_install() {
+	vlicense LICENSES/MIT
+	vsconf picom.sample.conf
+}
+
+picom-pijulius_package() {
+	depends="${sourcepkg}>=${version}_${revision}"
+	build_style=meta
+	short_desc+=" (transitional dummy package)"
+}
