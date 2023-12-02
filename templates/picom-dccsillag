@@ -1,4 +1,4 @@
-pkgname=picom-pijulius
+pkgname=picom-dcsillag
 version=1
 revision=5
 wrksrc=picom-next
@@ -12,10 +12,10 @@ depends="desktop-file-utils"
 short_desc="Lightweight compositor for X11 (previously a compton fork)"
 maintainer="Frank Steinborn <steinex@nognu.de>"
 license="MIT, MPL-2.0"
-homepage="https://github.com/pijulius/picom/"
+homepage="https://github.com/dccsillag/picom/"
 
 do_fetch() {
-  git clone --single-branch --depth=1 "https://github.com/pijulius/picom" ${wrksrc}
+  git clone --single-branch --depth=1 "https://github.com/dccsillag/picom" ${wrksrc}
 }
 
 post_install() {
